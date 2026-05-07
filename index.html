@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyMap | Personal Finance Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">MoneyMap</div>
+      <button class="btn btn-secondary" type="button">Start</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <article class="card hero-copy">
+          <p class="planner-note">All values are calculated monthly</p>
+          <h1>Take control of your money</h1>
+          <p>Plan savings, clear debt, and know what you can afford.</p>
+          <a href="#planner" class="btn btn-primary">Start Planning</a>
+        </article>
+
+        <article class="card hero-preview">
+          <h2>Preview</h2>
+          <div class="preview-row"><span>Net Income / month:</span><strong>$1836</strong></div>
+          <div class="preview-row"><span>Savings / month:</span><strong>$900</strong></div>
+          <div class="preview-row"><span>Left / month:</span><strong>$300</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="planner" class="planner-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Planner</h2>
+          <div class="planner-actions">
+            <div class="view-toggle" aria-label="Choose result view">
+              <button id="monthlyViewBtn" class="toggle-btn is-active" type="button">Monthly</button>
+              <button id="yearlyViewBtn" class="toggle-btn" type="button">Yearly</button>
+            </div>
+            <button id="resetBtn" class="btn btn-secondary" type="button">Reset</button>
+            <button id="calculateBtn" class="btn btn-primary" type="button">Calculate My Plan</button>
+          </div>
+        </div>
+
+        <div class="planner-grid">
+          <article class="card input-card">
+            <h3>Income</h3>
+            <label for="hourlyWage">Hourly wage ($)</label>
+            <input id="hourlyWage" type="number" min="0" step="0.01" placeholder="e.g. 18" />
+
+            <label for="hoursPerWeek">Hours per week (used to estimate monthly income)</label>
+            <input id="hoursPerWeek" type="number" min="0" step="0.1" placeholder="e.g. 30" />
+          </article>
+
+          <article class="card input-card">
+            <h3>Goal</h3>
+            <label for="targetSavings">Total savings goal ($)</label>
+            <input id="targetSavings" type="number" min="0" step="0.01" placeholder="e.g. 16000" />
+
+            <label for="goalMonths">Months to save</label>
+            <input id="goalMonths" type="number" min="0" step="1" placeholder="e.g. 9" />
+          </article>
+
+          <article class="card input-card">
+            <h3>Debt</h3>
+            <label for="totalDebt">Total debt balance ($)</label>
+            <input id="totalDebt" type="number" min="0" step="0.01" placeholder="e.g. 3000" />
+
+            <label for="debtMonths">Months to clear debt</label>
+            <input id="debtMonths" type="number" min="0" step="1" placeholder="e.g. 9" />
+          </article>
+
+          <article class="card input-card tax-card">
+            <h3>Tax (BC)</h3>
+            <p class="tax-region">British Columbia</p>
+            <p class="tax-badge">15% Auto</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <div class="container">
+        <h2 id="resultsHeading">Monthly Results</h2>
+        <div class="results-grid">
+          <article class="card metric"><h3 id="grossLabel">Gross Income per Month</h3><p id="grossIncome">$0.00</p></article>
+          <article class="card metric"><h3 id="taxLabel">Tax per Month</h3><p id="taxAmount">$0.00</p></article>
+          <article class="card metric"><h3 id="netLabel">Net Income per Month</h3><p id="netIncome">$0.00</p></article>
+          <article class="card metric"><h3 id="expensesLabel">Total Expenses per Month</h3><p id="totalExpenses">$0.00</p></article>
+          <article class="card metric"><h3 id="leftLabel">Left per Month</h3><p id="leftAmount">$0.00</p></article>
+          <article class="card metric"><h3 id="savingsLabel">Monthly Savings Needed</h3><p id="savingsNeeded">$0.00</p></article>
+          <article class="card metric"><h3 id="debtLabel">Monthly Debt Payment</h3><p id="debtPayment">$0.00</p></article>
+          <article class="card metric status"><h3>Status</h3><p id="statusText">Waiting for calculation</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="advice-section">
+      <div class="container">
+        <article class="card advice-card">
+          <h2>Smart Advice</h2>
+          <div id="smartAdvice" class="advice-copy">Enter your numbers and click calculate to get advice.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="spending-section">
+      <div class="container">
+        <h2 id="spendingHeading">Monthly Living Expenses</h2>
+        <div class="expenses-grid">
+          <article class="card input-card expense-card">
+            <h3>Housing</h3>
+            <label for="rent">Rent</label>
+            <input id="rent" type="number" min="0" step="0.01" placeholder="e.g. 1400" />
+            <p id="rentSuggestion" class="expense-suggestion">Suggested: add income and calculate first.</p>
+            <p id="rentHealth" class="expense-health">Enter your real expense</p>
+          </article>
+
+          <article class="card input-card expense-card">
+            <h3>Food</h3>
+            <label for="groceries">Groceries</label>
+            <input id="groceries" type="number" min="0" step="0.01" placeholder="e.g. 450" />
+            <p id="groceriesSuggestion" class="expense-suggestion">Suggested: add income and calculate first.</p>
+            <p id="groceriesHealth" class="expense-health">Enter your real expense</p>
+          </article>
+
+          <article class="card input-card expense-card">
+            <h3>Utilities</h3>
+            <label for="utilities">Utilities</label>
+            <input id="utilities" type="number" min="0" step="0.01" placeholder="e.g. 180" />
+            <p id="utilitiesSuggestion" class="expense-suggestion">Suggested: add income and calculate first.</p>
+            <p id="utilitiesHealth" class="expense-health">Enter your real expense</p>
+          </article>
+
+          <article class="card input-card expense-card">
+            <h3>Transport</h3>
+            <label for="transport">Transport</label>
+            <input id="transport" type="number" min="0" step="0.01" placeholder="e.g. 160" />
+            <p id="transportSuggestion" class="expense-suggestion">Suggested: add income and calculate first.</p>
+            <p id="transportHealth" class="expense-health">Enter your real expense</p>
+          </article>
+
+          <article class="card input-card expense-card">
+            <h3>Phone / Internet</h3>
+            <label for="phoneInternet">Phone / Internet</label>
+            <input id="phoneInternet" type="number" min="0" step="0.01" placeholder="e.g. 120" />
+            <p id="phoneInternetSuggestion" class="expense-suggestion">Suggested: add income and calculate first.</p>
+            <p id="phoneInternetHealth" class="expense-health">Enter your real expense</p>
+          </article>
+
+          <article class="card input-card expense-card">
+            <h3>Other</h3>
+            <label for="otherExpenses">Other expenses</label>
+            <input id="otherExpenses" type="number" min="0" step="0.01" placeholder="e.g. 200" />
+            <p id="otherExpensesSuggestion" class="expense-suggestion">Suggested: discretionary spending based on your income.</p>
+            <p id="otherExpensesHealth" class="expense-health">Enter your real expense</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="afford-section">
+      <div class="container">
+        <h2 id="affordHeading">Can I Afford This This Month?</h2>
+        <article class="card afford-card">
+          <div class="afford-grid">
+            <div>
+              <label for="itemName">Item name</label>
+              <input id="itemName" type="text" placeholder="Example: Laptop" />
+            </div>
+            <div>
+              <label id="itemPriceLabel" for="itemPrice">Price this month ($)</label>
+              <input id="itemPrice" type="number" min="0" step="0.01" placeholder="0.00" />
+            </div>
+            <div class="afford-action">
+              <button id="checkAffordBtn" class="btn btn-primary" type="button">Check</button>
+            </div>
+          </div>
+          <p id="affordMessage" class="afford-message">Enter an item and price to check.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
